@@ -96,7 +96,11 @@ class WintestProtocol:
 
     @_on('TIME')
     def _on_time_packet(self, packet):
-        pass
+        # TODO I don't know what packet.data[1] is
+        return 'time', {
+            'from': packet.data[0],
+            'timestamp': datetime.datetime.utcfromtimestamp(int(packet.data[2]))
+        }
 
     @_on('STATUS')
     def _on_status(self, packet):
