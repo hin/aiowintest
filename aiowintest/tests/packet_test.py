@@ -1,7 +1,6 @@
 import unittest
 
-import wtmsg
-from wtmsg import WintestPacket
+from ..packet import *
 
 # Some packegs as captured on the network, each string is the payload
 # of one UDP packet.
@@ -24,8 +23,8 @@ gab = [
 ]
 
 gab_parsed = [
-    WintestPacket('GAB', 'RUN', '', 'Seeeeeeegt'),
-    WintestPacket('GAB', 'MULT', '', 'åäö "test"'),
+    WintestPacket('GAB', ['RUN', '', 'Seeeeeeegt'], ('127.0.0.1', 9871)),
+    WintestPacket('GAB', ['MULT', '', 'åäö "test"'], ('127.0.0.1', 9871)),
 ]
 
 spot = [
@@ -46,16 +45,16 @@ class TestWintestPacket(unittest.TestCase):
 
     def test_decode_gab(self):
         for i, packet in enumerate(gab):
-            msg = WintestPacket.decode(packet)
+            msg = WintestPacket.decode(packet, ('127.0.0.1', 9871))
             self.assertEqual(msg.frame_type, 'GAB')
             self.assertSequenceEqual(msg.data, gab_parsed[i].data)
 
     def test_encode_string(self):
         s = 'åäö"'
-        self.assertEqual(wtmsg.encode_string(s), '\\345\\344\\366\\"')
+        self.assertEqual(encode_string(s), '\\345\\344\\366\\"')
 
     def test_decode_spot(self):
-        msg = WintestPacket.decode(spot[0])
+        msg = WintestPacket.decode(spot[0], ('127.0.0.1', 9871))
 
 if __name__ == '__main__':
     unittest.main()
