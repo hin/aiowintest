@@ -4,10 +4,11 @@ Python implementation of the Win-Test UDP protocol
 
 Win-Test (http://win-test.com) is a tool used for Ham Radio Contesting.
 
-This is currently a partial implementation of the protocol, mainly
-by reverse engineering the protocol by sniffing the UDP traffic.
+This is a partial implementation of the protocol used by Win-Test to
+synchronize QSOs, gab (chat) messages, contest score, and other information
+over a local IP network.
 
-The author of this package is not affiliated in any way with the Win-Test
+The authors of this package are not affiliated in any way with the Win-Test
 developers.
 
 Installation
@@ -19,18 +20,12 @@ Install using pip:
 
     pip install aiowintest
 
-Win-Test Protocol documentation
-===============================
+Documentation
+=============
 
-There is some partial protocol documentation from the Win-Test developers
-here: http://download.win-test.com/utils/SummaryBroadcastingSpecs.txt
+Please see https://aiowintest.readthedocs.org/
 
-Development
-===========
+Authors
+=======
 
-To build documentation:
-
-.. code-block:: bash
-
-    pip install sphinx
-    sphinx-build docs docs/_build
+Hans Insulander, SM0UTY, <hans@codium.se>
