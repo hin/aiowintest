@@ -18,7 +18,7 @@ with io.open(_version_path, 'r', encoding='latin1') as fp:
         raise RuntimeError('Unable to determine version.')
 
 setup(name='aiowintest',
-      version='{major}.{minor}.{patch}.{tag}'.format(**_version_info),
+      version='{major}.{minor}.{patch}{tag}'.format(**_version_info),
       description='Python implementation of the Win-Test UDP protocol',
       long_description=open('README.rst').read(),
       url='https://github.com/hin/aiowintest',
