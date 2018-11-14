@@ -15,7 +15,8 @@ Installation
 
 Install using pip:
 
-`pip install aiowintest`
+.. code-block:: console
+    pip install aiowintest
 
 Win-Test Protocol documentation
 ===============================
@@ -28,5 +29,6 @@ Development
 
 To build documentation:
 
-`pip install sphinx`
-`sphinx-build docs docs/_build`
+.. code-block:: console
+    pip install sphinx
+    sphinx-build docs docs/_build
