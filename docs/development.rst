@@ -47,4 +47,14 @@ Set a git tag to the version number, e.g.
 
     $ git tag $(python3 setup.py --version)
 
-Next,
+Next, build the distribution files:
+
+.. code-block:: bash
+
+    $ make dist
+
+Upload distribution files to pypi.org:
+
+.. code-block:: bash
+
+    $ make upload
