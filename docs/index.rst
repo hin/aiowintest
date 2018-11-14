@@ -9,10 +9,10 @@ Welcome to aiowintest's documentation!
 Version: |release|
 
 .. toctree::
-   :maxdepth: 2
-   :caption: Contents:
+   :maxdepth: 3
 
-
+   client
+   protocol
 
 Indices and tables
 ==================
