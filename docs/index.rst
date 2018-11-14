@@ -8,6 +8,8 @@ Welcome to aiowintest's documentation!
 
 Version: |release|
 
+Project homepage: https://github.com/hin/aiowintest
+
 .. toctree::
    :maxdepth: 3
 
