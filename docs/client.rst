@@ -29,6 +29,17 @@ Install aiowintest using pip:
 
     $ pip install aiowintest
 
+It is strongly recommended to use a python virtual environment, e.g.
+
+.. code-block:: bash
+
+    $ python3 -m venv path/to/my/new/env
+    $ . path/to/my/new/env/bin/activate
+
+See the `Python documentation`_ for more information.
+
+.. _Python documentation: https://docs.python.org/3/library/venv.html
+
 Quickstart
 ==========
 
