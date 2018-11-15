@@ -23,7 +23,7 @@ Install using pip:
 Documentation
 =============
 
-Please see https://aiowintest.readthedocs.org/
+Please see https://aiowintest.readthedocs.io/
 
 Authors
 =======

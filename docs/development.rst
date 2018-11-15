@@ -15,9 +15,9 @@ To build the documentation:
 
 .. code-block:: bash
 
-    $ sphinx-build docs docs/_build
+    $ make docs
 
-Open docs/_build/index.html in your web browser.
+Open the file "``docs/_build/index.html``" in your web browser.
 
 Running unit tests
 ==================
@@ -46,6 +46,7 @@ Set a git tag to the version number, e.g.
 .. code-block:: bash
 
     $ git tag $(python3 setup.py --version)
+    $ git push --tags
 
 Next, build the distribution files:
 
@@ -58,3 +59,7 @@ Upload distribution files to pypi.org:
 .. code-block:: bash
 
     $ make upload
+
+The documentation at https://aiowintest.readthedocs.io/ is updated
+automatically by Read the Docs when the tag is pushed, but check that it
+worked and take necessary actions to correct any issue.
