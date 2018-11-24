@@ -1,4 +1,3 @@
-from dataclasses import dataclass, field
 import shlex
 
 # Some documentation here:
@@ -15,11 +14,7 @@ def encode_string(s):
             result += '\\%03o'%(ord(c))
     return result
 
-@dataclass
 class WintestPacket:
-    frame_type: str
-    data: list
-
     def __init__(self, frame_type, data):
         self.frame_type = frame_type
         self.data = data
