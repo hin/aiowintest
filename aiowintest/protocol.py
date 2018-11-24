@@ -39,11 +39,10 @@ class WintestProtocol:
         self._loop = loop
         self._local_addr = local_addr
         self._broadcast_addr = broadcast_addr
-        asyncio.ensure_future(self._connect())
         self._summary = {}
         self._handlers = {}
 
-    async def _connect(self):
+    async def connect(self):
         """Connect the UDP socket"""
         await self._loop.create_datagram_endpoint(
             lambda: self, local_addr=self._local_addr
@@ -86,7 +85,7 @@ class WintestProtocol:
         Args:
             pkt (WintestPacket): the packet to send
         """
-        self.transport.sendto(pkt.encode(), self._broadcast_addr)
+        self._transport.sendto(pkt.encode(), self._broadcast_addr)
 
     @_on('SUMMARY')
     def _on_summary_packet(self, packet):
@@ -183,5 +182,5 @@ class WintestProtocol:
 
     def datagram_received(self, payload, addr):
         """Called by asyncio when a UDP packet is received"""
-        pkt = WintestPacket.decode(payload, addr)
+        pkt = WintestPacket.decode(payload)
         self._on_packet(pkt)

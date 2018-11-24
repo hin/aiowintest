@@ -20,12 +20,11 @@ class WintestPacket:
     frame_type: str
     data: list
 
-    def __init__(self, frame_type, data, sender):
+    def __init__(self, frame_type, data):
         self.frame_type = frame_type
-        self.sender = sender
         self.data = data
 
-    def decode(packet, sender):
+    def decode(packet):
         def unescape(s):
             i = 0
             result = ''
@@ -54,7 +53,7 @@ class WintestPacket:
         i = packet.find(b':')
         frame_type = packet[:i].decode('ascii')
         msg_data = [unescape(a) for a in shlex.split(packet[i+1:-1].decode('ascii'))]
-        return WintestPacket(frame_type, msg_data, sender)
+        return WintestPacket(frame_type, msg_data)
 
     def encode(self):
         def encode_arg(arg):
