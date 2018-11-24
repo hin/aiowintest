@@ -23,8 +23,8 @@ gab = [
 ]
 
 gab_parsed = [
-    WintestPacket('GAB', ['RUN', '', 'Seeeeeeegt'], ('127.0.0.1', 9871)),
-    WintestPacket('GAB', ['MULT', '', 'åäö "test"'], ('127.0.0.1', 9871)),
+    WintestPacket('GAB', ['RUN', '', 'Seeeeeeegt']),
+    WintestPacket('GAB', ['MULT', '', 'åäö "test"']),
 ]
 
 spot = [
@@ -45,7 +45,7 @@ class TestWintestPacket(unittest.TestCase):
 
     def test_decode_gab(self):
         for i, packet in enumerate(gab):
-            msg = WintestPacket.decode(packet, ('127.0.0.1', 9871))
+            msg = WintestPacket.decode(packet)
             self.assertEqual(msg.frame_type, 'GAB')
             self.assertSequenceEqual(msg.data, gab_parsed[i].data)
 
@@ -54,7 +54,7 @@ class TestWintestPacket(unittest.TestCase):
         self.assertEqual(encode_string(s), '\\345\\344\\366\\"')
 
     def test_decode_spot(self):
-        msg = WintestPacket.decode(spot[0], ('127.0.0.1', 9871))
+        msg = WintestPacket.decode(spot[0])
 
 if __name__ == '__main__':
     unittest.main()
