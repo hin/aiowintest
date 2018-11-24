@@ -168,6 +168,22 @@ class WintestProtocol:
             'vfo_b': packet.data[10],
             }
 
+    @_on('IHAVE')
+    def _on_ihave(self, packet):
+        pass
+
+    @_on('RCVDPKT')
+    def _on_rcvdpkt(self, packet):
+        pass
+
+    @_on('ADDQSO')
+    def _on_addqso(self, packet):
+        pass
+
+    @_on('BANDMAP')
+    def _on_bandmap(self, packet):
+        pass
+
     def _on_packet(self, packet):
         """Parse a packet and call the appropriate parser for the packet"""
         packet_parser = _packet_parsers.get(packet.frame_type)
