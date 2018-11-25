@@ -178,7 +178,15 @@ class WintestProtocol:
 
     @_on('ADDQSO')
     def _on_addqso(self, packet):
-        pass
+        return 'addqso', {
+            'station': packet.data[0],
+            'timestamp': datetime.datetime.utcfromtimestamp(int(packet.data[3])),
+            'frequency': int(packet.data[4])*100,
+            'remote_station': packet.data[12],
+            'sent_report': packet.data[13],
+            'rcvd_report': packet.data[14],
+            'operator': packet.data[21],
+        }
 
     @_on('BANDMAP')
     def _on_bandmap(self, packet):
