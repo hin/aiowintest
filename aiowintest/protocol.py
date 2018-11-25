@@ -164,8 +164,8 @@ class WintestProtocol:
         return 'status', {
             'station': packet.data[0],
             'operator': packet.data[11],
-            'vfo_a': packet.data[6],
-            'vfo_b': packet.data[10],
+            'vfo_a': int(packet.data[6])*100,
+            'vfo_b': int(packet.data[10])*100,
             }
 
     @_on('IHAVE')
