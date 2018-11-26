@@ -38,6 +38,20 @@ class TestWintestPacket(unittest.TestCase):
             ch = WintestPacket.checksum(data)
             self.assertEqual(ch, msg[-2])
 
+    def test_split_string(self):
+        r = split_data('"HEJ HOPP" "4"')
+        self.assertEqual(r, ['HEJ HOPP', '4'])
+        r = split_data('"HEJ HOPP" 4')
+        self.assertEqual(r, ['HEJ HOPP', 4])
+        r = split_data('"HEJ HOPP" 4 17 19.34')
+        self.assertEqual(r, ['HEJ HOPP', 4, 17, 19.34])
+        r = split_data('"\\345\\344\\366"')
+        self.assertEqual(r, ['åäö'])
+        r = split_data('"\\""')
+        self.assertEqual(r, ['"'])
+        r = split_data('"\\345\\344\\366 \\"test\\"" 4 17 19.34')
+        self.assertEqual(r, ['åäö "test"', 4, 17, 19.34])
+
     def test_encode_gab(self):
         for i, msg in enumerate(gab_parsed):
             data = msg.encode()
@@ -52,6 +66,13 @@ class TestWintestPacket(unittest.TestCase):
     def test_encode_string(self):
         s = 'åäö"'
         self.assertEqual(encode_string(s), '\\345\\344\\366\\"')
+
+    def test_decode_summary_row(self):
+        msg = WintestPacket.decode(summary[0])
+        self.assertEqual(msg.data, [
+            'MULT', '',
+            8220, 'ID', '4.23.0', 129, 'SJ0X', 'JO99BM', '14', 200, 1, 3, 1, 0, 7, 7
+        ])
 
     def test_decode_spot(self):
         msg = WintestPacket.decode(spot[0])
