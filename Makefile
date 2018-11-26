@@ -2,7 +2,9 @@ all: test
 
 .PHONY: test
 test:
-	python setup.py pytest
+	coverage run --source aiowintest -m pytest
+	coverage report
+	coverage html
 
 .PHONY: dist
 dist:
