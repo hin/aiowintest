@@ -17,19 +17,27 @@ To build the documentation:
 
     $ make docs
 
-Open the file "``docs/_build/index.html``" in your web browser.
+Open the file ``docs/_build/index.html`` in your web browser.
 
-Running unit tests
-==================
+Running unit tests & code coverage
+==================================
 
-Run the unit test by:
+Prerequisites:
 
 .. code-block:: bash
 
-    $ python setup.py test
+    $ pip install coverage pytest
 
-Uploading a new release
-=======================
+Run the unit tests by:
+
+.. code-block:: bash
+
+    $ make test
+
+Coverage report in HTML format is generated in ``htmlcov/index.html``.
+
+Uploading a new release to pypi.org
+===================================
 
 Prerequisites:
 
@@ -39,7 +47,7 @@ Prerequisites:
     pip install setuptools
     pip install wheel
 
-Update the version in aiowintest/__init__.py
+Update the version number in `aiowintest/__init__.py`
 
 Set a git tag to the version number, e.g.
 
