@@ -55,6 +55,3 @@ class TestWintestPacket(unittest.TestCase):
 
     def test_decode_spot(self):
         msg = WintestPacket.decode(spot[0])
-
-if __name__ == '__main__':
-    unittest.main()
