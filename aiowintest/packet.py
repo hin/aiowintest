@@ -1,5 +1,3 @@
-import shlex
-
 def encode_string(s):
     result = ''
     for c in s:
