@@ -1,8 +1,5 @@
 import shlex
 
-# Some documentation here:
-# http://download.win-test.com/utils/SummaryBroadcastingSpecs.txt
-
 def encode_string(s):
     result = ''
     for c in s:
@@ -36,10 +33,10 @@ class WintestPacket:
             return result
         # Win-test adds a null character at the end of all packets except
         # for the RCVDPKT (DX cluster spots). I don't know why - it shouldn't
-        # according the summary docs. This may a simple bug in their implementation
+        # according their documentation. This may a simple bug in their implementation
         # or it could be some feature I haven't figured out.
         # For now, we simple check if the last byte is zero, and discard it
-        # if it is. Ugly but works...
+        # if it is. This works since the 7th bit is always set in the checksum.
         if packet[-1] == 0:
             packet = packet[:-1]
         ch = packet[-1]
@@ -61,10 +58,11 @@ class WintestPacket:
         data = msg.encode('ascii')
         ch = WintestPacket.checksum(data)
         data += bytes([ch])
-        # Add the strange extra null character at the end to (mosty) mimic Win-tests
-        # actual behaviour. To mimic Win-test fully, we should not add this for
-        # for at least the RCVDPKT packets, but I do not currently have a need
-        # for sending such packets so we skip this for now. Ugly but good enough...
+        # Add the strange extra null character at the end to (hopefully) mimic
+        # the actual observed behaviour of Win-Test.
+        # To mimic Win-Test more closely, we should not add this for for at
+        # least the RCVDPKT packets, but there is currently no support for
+        # sending such packets so we skip this for now.
         data += bytes([0])
         return data
 
